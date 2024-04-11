@@ -2,16 +2,19 @@ import { useContext, useState } from "react";
 import TodoContext from "../../contexts/todoContext/TodoContext";
 import SingleTodo from "./SingleTodo";
 import { toast } from "react-toastify";
+import axios from "axios"
 
 function Todos() {
 	const { todos } = useContext(TodoContext);
 	const [inputValue, setInputValue] = useState("");
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault();
+		console.log("create");
 		if (inputValue === "") {
 			toast.error("Oops! add some texts", { position: "top-center" });
 		}
+		await axios.post("http://localhost:3000", inputValue)
 	};
 
 	return (

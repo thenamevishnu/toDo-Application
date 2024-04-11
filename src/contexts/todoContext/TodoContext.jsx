@@ -18,9 +18,9 @@ export const TodoDataProvider = ({ children }) => {
 	useEffect(() => {
 		(async () => {
 			try {
+				console.log("read");
 				const { data } = await axios.get("http://localhost:3000");
 				setTodos(data);
-				console.log(data);
 			} catch (error) {
 				console.log(error);
 				toast.error(error.message);
